@@ -2,11 +2,26 @@
 // import { DB_Name } from "./constants";
 import dotenv from "dotenv";
 import connectionDB from "./Db/DB.js";
+import app from "app";
+
 
 dotenv.config({
     path: './env'
 })
 connectionDB()
+.then(()=>{
+app.listen(process.env.PORT || 8000,()=>{
+    console.log(`server is connected from: ${process.env.PORT}`);
+})
+})
+
+.catch ((error)=>{
+console.log(`Connection Failed: ${error}`);
+}) 
+
+
+
+
 
 // import express from "express";
 
