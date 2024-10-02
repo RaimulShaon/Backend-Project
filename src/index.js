@@ -2,7 +2,7 @@
 // import { DB_Name } from "./constants";
 import dotenv from "dotenv";
 import connectionDB from "./Db/DB.js";
-import {app} from "./app.js";
+import app from "./app.js";
 
 
 dotenv.config({

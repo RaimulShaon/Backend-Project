@@ -35,7 +35,7 @@ const userSchema = new mongoose.Schema(
         },
         watchHistory: [
             {
-                type: Schema.types.ObjectId,
+                type: Schema.Types.ObjectId,
                 ref: "Video"
             }
         ],
@@ -62,7 +62,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 //jwt er access neyar jonno
-userSchema.methods.genarateToken= function () {
+userSchema.methods.genarateAccessToken= function () {
     jwt.sign(
         {
         _id: this._id,
@@ -90,4 +90,4 @@ userSchema.methods.genarateRefrshToken= function () {
 
 export const User = mongoose.model("User", userSchema)
 
-userSchema.save();
+// userSchema.save();

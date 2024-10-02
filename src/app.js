@@ -28,4 +28,4 @@ app.use("/users", userRouter)
 
 
 
-export default {app};
+export default app;
