@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
             lowercase : true,
             unique: true,
             trim : true,
-            index : true
+            index : true        //mongoDB te searchable kore index.
         },
         email: {
             type: String,
@@ -49,20 +49,20 @@ const userSchema = new mongoose.Schema(
 }, {timestamps: true});
 
 //password encrypt korar jonno
-userSchema.pre("save", async function (next) {
-    if (this.isModified("password")) {
-        this.password =await bcrypt.hash(this.password, 10);   
-    }
+userSchema.pre("save", async function (next) {      //pre hook mongoose er jkhn kono pass save houar age ai suru hobe 
+    if (this.isModified("password")) return next();
+        this.password =await bcrypt.hash(this.password, 10);   //password jodi mod hoy tobe pass bcript kore deo
+    
         next();
 });
 
 //2ta password compair korar jonno
 userSchema.methods.isPasswordCorrect = async function (password) {
-   await bcrypt.compare(password, this.password)
+   await bcrypt.compare(password, this.password)        // 2 pass compair kore old and new
 };
 
-//jwt er access neyar jonno
-userSchema.methods.genarateAccessToken= function () {
+//jwt er access neyar jonno JWT method use kore 
+userSchema.methods.genarateAccessToken= function () { return
     jwt.sign(
         {
         _id: this._id,
@@ -75,7 +75,7 @@ userSchema.methods.genarateAccessToken= function () {
         }
 )
 };
-userSchema.methods.genarateRefrshToken= function () {
+userSchema.methods.genarateRefrshToken= function () {return
     jwt.sign(
         {
         _id: this._id,

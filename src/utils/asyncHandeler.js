@@ -1,4 +1,4 @@
-const asyncHandler = (fn) => async (req, res, next) => {
+const asyncHandler = (fn) => async (req, res, next) => {            //api resopse er jonno bebohar korar karone ekti molot akare deyar jonno toiri
     try {
         await fn(req, res, next);
     } catch (err) {

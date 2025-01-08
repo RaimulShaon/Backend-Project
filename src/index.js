@@ -6,7 +6,7 @@ import app from "./app.js";
 
 
 dotenv.config({
-    path: './env'
+    path: './env'           //env er path dite hobe
 })
 connectionDB()
 .then(()=>{
@@ -16,13 +16,13 @@ app.listen(process.env.PORT || 8000,()=>{
 })
 
 .catch ((error)=>{
-console.log(`Connection Failed: ${error}`);
+console.log(`MongoDB Connection Failed: ${error}`);
 }) 
 
 
 
 
-
+    
 // import express from "express";
 
 // const app = express()

@@ -8,7 +8,7 @@ const router = Router();
 // router.route("/register").post(userRegister);
 router.post("/register", upload.fields([
     { name: 'avatar', maxCount: 1 }, 
-    { name: 'coverImage', maxCount: 2 }
+    { name: 'coverImage', maxCount: 1 }
     ]), userRegister);
 
 router.post("/login", userLoging);
@@ -16,4 +16,4 @@ router.post("/login", userLoging);
 router.post("/logout", verifyJWT, loguot)
 router.post("/refresh-Token", refreshAceessToken )
 
-export default router
+export default router;

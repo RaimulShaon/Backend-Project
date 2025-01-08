@@ -14,7 +14,7 @@ app.use(cors({
 //express er config korar jonno toiri kora 
 
 app.use(express.json({limit:"16kb"}))       //json file asle tar limit lagbe
-app.use(express.urlencoded({extended:true, limit: "16kb"}))     // onno kono url theke req asle accpt korar jonno 
+app.use(express.urlencoded({extended:true, limit: "16kb"}))     // onno kono url theke req asle accpt korar jonno kono kono jaygay %, ? ase oigulo bujhar jonno
 app.use(express.static('pubilc'))       // kono pdf ba img asle public a save hobe
 app.use(cookieParser())
 
@@ -24,7 +24,7 @@ app.use(cookieParser())
 import userRouter from "./routes/user.routs.js";
 
 //routs declaration
-app.use("/users", userRouter)
+app.use("/api/v1/users", userRouter)
 
 
 

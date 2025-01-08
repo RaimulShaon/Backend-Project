@@ -1,6 +1,5 @@
 
     import { v2 as cloudinary } from 'cloudinary';
-import { response } from 'express';
     import fs from 'fs';
 
 
@@ -17,17 +16,18 @@ import { response } from 'express';
     const uploadOnCloudinary= async(localStorage)=>{
         try {
             if (!localStorage) return null
-                
+                //upload on cldnry
             const uploadResult = await cloudinary.uploader
             .upload(localStorage,{
                 resource_type: "auto"
             })
-            console.log(uploadResult, response.url);
-            return response
+            console.log(uploadResult, uploadResult.url);
+            fs.unlinkSync(localStorage)
+            return uploadResult;
 
             
         } catch (error) {
-            fs.unlink(localStorage)     //remove file from 
+            fs.unlinkSync(localStorage)     //remove file from 
         }
        
     }
