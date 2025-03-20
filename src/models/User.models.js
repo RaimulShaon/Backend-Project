@@ -76,11 +76,7 @@ userSchema.methods.genarateAccessToken= function () {
 )
 };
 userSchema.methods.genarateRefrshToken= function () {
-<<<<<<< HEAD
     return  jwt.sign(
-=======
-    return jwt.sign(
->>>>>>> eb50bb498fdbd87c7570b21e7813e5f4362a7c6a
         {
         _id: this._id,
         
