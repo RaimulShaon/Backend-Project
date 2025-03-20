@@ -144,9 +144,9 @@ const userLoging = asyncHandler(async(req, res)=>{
     throw new ApiError(401, "password does't exist"); //check users
     }
 
-  const {accessToken, refreshToken} = await generateAccessNRefreshToken(userid._id)
+  const {accessToken, refreshToken} = await generateAccessNRefreshToken(userId._id)
   //token gen koray retn astece accss r rfsh token oita var er moddhe store kora jay
-  const  login = await User.findById(userid._id).select(
+  const  login = await User.findById(userId._id).select(
     "-password -refreshToken"
   )
   //   // Assuming userExt exists
@@ -298,9 +298,9 @@ const currentPassword = asyncHandler(async(req, res)=>{
  // file update, delete, and upload like coverImage
 
  const fileImgUpdate = asyncHandler(async(req, res)=>{
-  const updateAvatar = req.file?.path
-  if (!updateAvatar) {
-    throw new ApiError(400, "Avatar file is missing");
+  const updateCoverpath = req.file?.path
+  if (!updateCoverpath) {
+    throw new ApiError(400, "CoverImage file is missing");
       }
 
       const oldCoverImg = req.file?.coverImage; // Assuming the old avatar's Cloudinary public_id is stored

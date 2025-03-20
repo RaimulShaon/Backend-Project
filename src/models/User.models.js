@@ -50,7 +50,7 @@ const userSchema = new mongoose.Schema(
 
 //password encrypt korar jonno
 userSchema.pre("save", async function (next) {      //pre hook mongoose er jkhn kono pass save houar age ai suru hobe 
-    if (this.isModified("password")) return next();
+    if (!this.isModified("password")) return next();
         this.password =await bcrypt.hash(this.password, 10);   //password jodi mod hoy tobe pass bcript kore deo
     
         next();
@@ -62,8 +62,8 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 //jwt er access neyar jonno JWT method use kore 
-userSchema.methods.genarateAccessToken= function () { return
-    jwt.sign(
+userSchema.methods.genarateAccessToken= function () { 
+   return jwt.sign(
         {
         _id: this._id,
         email : this.email,
@@ -75,8 +75,8 @@ userSchema.methods.genarateAccessToken= function () { return
         }
 )
 };
-userSchema.methods.genarateRefrshToken= function () {return
-    jwt.sign(
+userSchema.methods.genarateRefrshToken= function () {
+    return  jwt.sign(
         {
         _id: this._id,
         
