@@ -62,8 +62,8 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 };
 
 //jwt er access neyar jonno JWT method use kore 
-userSchema.methods.genarateAccessToken= function () { return
-    jwt.sign(
+userSchema.methods.genarateAccessToken= function () { 
+   return jwt.sign(
         {
         _id: this._id,
         email : this.email,
@@ -75,8 +75,8 @@ userSchema.methods.genarateAccessToken= function () { return
         }
 )
 };
-userSchema.methods.genarateRefrshToken= function () {return
-    jwt.sign(
+userSchema.methods.genarateRefrshToken= function () {
+    return jwt.sign(
         {
         _id: this._id,
         
