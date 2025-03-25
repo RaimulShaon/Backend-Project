@@ -144,12 +144,12 @@ const userLoging = asyncHandler(async(req, res)=>{
     throw new ApiError(401, "password does't exist"); //check users
     }
 
-  const {accessToken, refreshToken} = await generateAccessNRefreshToken(userId._id)
+  const {accessToken, refreshToken} = await generateAccessNRefreshToken(userExt._id)
   //token gen koray retn astece accss r rfsh token oita var er moddhe store kora jay
-  const  login = await User.findById(userId._id).select(
+  const  login = await User.findById(userExt._id).select(
     "-password -refreshToken"
   )
-  //   // Assuming userExt exists
+  //   // Assuming userExt exists 
 // userExt.accessToken = accessToken;
 // userExt.refreshToken = refreshToken;   aivabe o update kora jay
 
@@ -183,7 +183,7 @@ const loguot = asyncHandler(async(req, res)=>{
     secure: true
   }
   return res.status.clearCookie("accessToken", option).clearCookie("refreshToken", option).json(new ApiSuccess(200,{}, "User logout successfully"))  
-});
+})  ;
 
 // END of refresh TOken
 //acctoken er time jkhn ses hoye jabe tkhn frnEnd code a likhbe if accToken er time ses hoye jay tkhn notun kore refToken deo. jate kore user login thake sei token verify kore dekhbo j token mil ache kina thakle abr session calu thakbe noyto (401 expired).
@@ -439,7 +439,7 @@ const user = User.aggregate([
 if (!user) {
   throw new ApiError(400,"didn't get the user");
   }
-  return res.status(200).json(new ApiSuccess(200, watchHistory, "watch history get successfully"))
+  return res.status(200).json(new ApiSuccess(200, getWatchHistory, "watch history get successfully"))
 })
 
 
